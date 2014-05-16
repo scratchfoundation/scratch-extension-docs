@@ -65,9 +65,9 @@
 <p>An extension may define a number of blocks, of different types (e.g. a command block, or a hat block, or a reporter block). Blocks can take in parameters.</p>
 
 <h3>
-<a name="reporter-blocks" class="anchor" href="#reporter-blocks"><span class="octicon octicon-link"></span></a>Reporter blocks</h3>
+<a name="command-blocks" class="anchor" href="#command-blocks"><span class="octicon octicon-link"></span></a>Command blocks</h3>
 
-<p>To add a simple <em>reporter</em> block, there needs to be an entry in the <code>descriptors.blocks</code> list, and a corresponding function that returns the reported value. The simplest block possible is shown below. The block reports back the value of  the constant π.</p>
+<p>To add a simple <em>command</em> block, there needs to be an entry in the <code>descriptors.blocks</code> list, and a corresponding function for it. The simplest block possible is shown below (it does nothing).</p>
 
 <div class="highlight highlight-javascript"><pre><span class="k">new</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">ext</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
@@ -81,23 +81,27 @@
         <span class="k">return</span> <span class="p">{</span><span class="nx">status</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">msg</span><span class="o">:</span> <span class="s1">'Ready'</span><span class="p">};</span>
     <span class="p">};</span>
 
-    <span class="nx">ext</span><span class="p">.</span><span class="nx">get_pi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">;</span>
+    <span class="nx">ext</span><span class="p">.</span><span class="nx">my_first_block</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Code that gets executed when the block is run</span>
     <span class="p">}</span>
 
     <span class="c1">// Block and block menu descriptions</span>
     <span class="kd">var</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">blocks</span><span class="o">:</span> <span class="p">[</span>
-            <span class="p">[</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'PI'</span><span class="p">,</span> <span class="s1">'get_pi'</span><span class="p">],</span>
+            <span class="c1">// Block type, block name, function name</span>
+            <span class="p">[</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'my first block'</span><span class="p">,</span> <span class="s1">'my_first_block'</span><span class="p">],</span>
         <span class="p">]</span>
     <span class="p">};</span>
 
     <span class="c1">// Register the extension</span>
-    <span class="nx">ScratchExtensions</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'Sample extension'</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">,</span> <span class="nx">ext</span><span class="p">);</span>
+    <span class="nx">ScratchExtensions</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'My first extension'</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">,</span> <span class="nx">ext</span><span class="p">);</span>
 <span class="p">})();</span>
 </pre></div>
 
-<p>To add parameters to blocks, the block definition in <code>descriptors.blocks</code> needs to be extended.</p>
+<h3>
+<a name="reporter-blocks" class="anchor" href="#reporter-blocks"><span class="octicon octicon-link"></span></a>Reporter blocks</h3>
+
+<p>Blocks can also return values, and they are called <em>reporter</em> blocks. The corresponding JavaScript function for a reporter block needs to return a value, as shown in the example below (note that this example also shows how to make blocks accept parameters).</p>
 
 <div class="highlight highlight-javascript"><pre><span class="k">new</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">ext</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
@@ -118,8 +122,8 @@
     <span class="c1">// Block and block menu descriptions</span>
     <span class="kd">var</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">blocks</span><span class="o">:</span> <span class="p">[</span>
+            <span class="c1">// Block type, block name, function name, parameter1 default value, parameter2 default value</span>
             <span class="p">[</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'%d ^ %d'</span><span class="p">,</span> <span class="s1">'power'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
-            <span class="c1">// The last two values above represent default parameter values</span>
         <span class="p">]</span>
     <span class="p">};</span>
 
