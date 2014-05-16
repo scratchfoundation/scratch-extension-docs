@@ -122,13 +122,55 @@
     <span class="c1">// Block and block menu descriptions</span>
     <span class="kd">var</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">blocks</span><span class="o">:</span> <span class="p">[</span>
-            <span class="c1">// Block type, block name, function name, parameter1 default value, parameter2 default value</span>
+            <span class="c1">// Block type, block name, function name, param1 default value, param2 default value</span>
             <span class="p">[</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'%d ^ %d'</span><span class="p">,</span> <span class="s1">'power'</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
         <span class="p">]</span>
     <span class="p">};</span>
 
     <span class="c1">// Register the extension</span>
     <span class="nx">ScratchExtensions</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'Sample extension'</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">,</span> <span class="nx">ext</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+
+<h3>
+<a name="reporter-blocks-that-wait" class="anchor" href="#reporter-blocks-that-wait"><span class="octicon octicon-link"></span></a>Reporter blocks that wait</h3>
+
+<p>One common use-case for reporter blocks is getting data from online web-services, where the blocks need to wait for the web-api call to complete. The following example shows how to fetch the current temperature of a city using an AJAX call to <a href="http://openweathermap.org/API">Open Weather Map API</a>. Note that the block type is <em>R</em> instead of <em>r</em> (which is for a non-blocking reporter).</p>
+
+<div class="highlight highlight-javascript"><pre><span class="k">new</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">ext</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="c1">// Cleanup function when the extension is unloaded</span>
+    <span class="nx">ext</span><span class="p">.</span><span class="nx">_shutdown</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+
+    <span class="c1">// Status reporting code</span>
+    <span class="c1">// Use this to report missing hardware, plugin or unsupported browser</span>
+    <span class="nx">ext</span><span class="p">.</span><span class="nx">_getStatus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span><span class="nx">status</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">msg</span><span class="o">:</span> <span class="s1">'Ready'</span><span class="p">};</span>
+    <span class="p">};</span>
+
+    <span class="nx">ext</span><span class="p">.</span><span class="nx">get_temp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">location</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Make an AJAX call to the Open Weather Maps API</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+              <span class="nx">url</span><span class="o">:</span> <span class="s1">'http://api.openweathermap.org/data/2.5/weather?q='</span><span class="o">+</span><span class="nx">location</span><span class="o">+</span><span class="s1">'&amp;units=imperial'</span><span class="p">,</span>
+              <span class="nx">dataType</span><span class="o">:</span> <span class="s1">'jsonp'</span><span class="p">,</span>
+              <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">data</span> <span class="p">)</span> <span class="p">{</span>
+                  <span class="c1">// Got the data - return the value</span>
+                  <span class="nx">temperature</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="s1">'main'</span><span class="p">][</span><span class="s1">'temp'</span><span class="p">];</span>
+                  <span class="nx">callback</span><span class="p">(</span><span class="nx">temperature</span><span class="p">);</span>
+              <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Block and block menu descriptions</span>
+    <span class="kd">var</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">blocks</span><span class="o">:</span> <span class="p">[</span>
+            <span class="p">[</span><span class="s1">'R'</span><span class="p">,</span> <span class="s1">'current temperature in city %s'</span><span class="p">,</span> <span class="s1">'get_temp'</span><span class="p">,</span> <span class="s1">'Boston, MA'</span><span class="p">],</span> 
+        <span class="p">]</span>
+    <span class="p">};</span>
+
+    <span class="c1">// Register the extension</span>
+    <span class="nx">ScratchExtensions</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'Weather extension'</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">,</span> <span class="nx">ext</span><span class="p">);</span>
 <span class="p">})();</span>
 </pre></div>
       </section>
