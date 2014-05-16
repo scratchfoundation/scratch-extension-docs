@@ -177,6 +177,51 @@
 
 <h3>
 <a name="hat-blocks" class="anchor" href="#hat-blocks"><span class="octicon octicon-link"></span></a>Hat blocks</h3>
+
+<p>Hat blocks go on top of block stacks - examples of Scratch hat blocks include "when green flag clicked" or "when this sprite clicked". To create a hat block through an extension, the block type needs to be set to <em>h</em>, as shown in the example below.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="k">new</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">ext</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">alarm_went_off</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// This becomes true after the alarm goes off</span>
+
+    <span class="c1">// Cleanup function when the extension is unloaded</span>
+    <span class="nx">ext</span><span class="p">.</span><span class="nx">_shutdown</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+
+    <span class="c1">// Status reporting code</span>
+    <span class="c1">// Use this to report missing hardware, plugin or unsupported browser</span>
+    <span class="nx">ext</span><span class="p">.</span><span class="nx">_getStatus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span><span class="nx">status</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">msg</span><span class="o">:</span> <span class="s1">'Ready'</span><span class="p">};</span>
+    <span class="p">};</span>
+
+    <span class="nx">ext</span><span class="p">.</span><span class="nx">set_alarm</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">time</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+           <span class="nx">alarm_went_off</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>     
+       <span class="p">},</span> <span class="nx">time</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">ext</span><span class="p">.</span><span class="nx">when_alarm</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+       <span class="c1">// Reset alarm_went_off if it is true, and return true</span>
+       <span class="c1">// otherwise, return false.</span>
+       <span class="k">if</span> <span class="p">(</span><span class="nx">alarm_went_off</span> <span class="o">==</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nx">alarm_went_off</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+           <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+       <span class="p">}</span>
+
+       <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Block and block menu descriptions</span>
+    <span class="kd">var</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">blocks</span><span class="o">:</span> <span class="p">[</span>
+            <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'run alarm after %n seconds'</span><span class="p">,</span> <span class="s1">'set_alarm'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">'h'</span><span class="p">,</span> <span class="s1">'when alarm goes off'</span><span class="p">,</span> <span class="s1">'when_alarm'</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">};</span>
+
+    <span class="c1">// Register the extension</span>
+    <span class="nx">ScratchExtensions</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'Alarm extension'</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">,</span> <span class="nx">ext</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
       </section>
     </div>
 
