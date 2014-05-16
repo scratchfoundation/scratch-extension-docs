@@ -155,8 +155,9 @@
               <span class="nx">url</span><span class="o">:</span> <span class="s1">'http://api.openweathermap.org/data/2.5/weather?q='</span><span class="o">+</span><span class="nx">location</span><span class="o">+</span><span class="s1">'&amp;units=imperial'</span><span class="p">,</span>
               <span class="nx">dataType</span><span class="o">:</span> <span class="s1">'jsonp'</span><span class="p">,</span>
               <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">data</span> <span class="p">)</span> <span class="p">{</span>
-                  <span class="c1">// Got the data - return the value</span>
-                  <span class="nx">temperature</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="s1">'main'</span><span class="p">][</span><span class="s1">'temp'</span><span class="p">];</span>
+                  <span class="c1">// Got the data - parse it and return the temperature</span>
+                  <span class="nx">weather_obj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+                  <span class="nx">temperature</span> <span class="o">=</span> <span class="nx">weather_obj</span><span class="p">[</span><span class="s1">'main'</span><span class="p">][</span><span class="s1">'temp'</span><span class="p">];</span>
                   <span class="nx">callback</span><span class="p">(</span><span class="nx">temperature</span><span class="p">);</span>
               <span class="p">}</span>
         <span class="p">});</span>
@@ -173,6 +174,9 @@
     <span class="nx">ScratchExtensions</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'Weather extension'</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">,</span> <span class="nx">ext</span><span class="p">);</span>
 <span class="p">})();</span>
 </pre></div>
+
+<h3>
+<a name="hat-blocks" class="anchor" href="#hat-blocks"><span class="octicon octicon-link"></span></a>Hat blocks</h3>
       </section>
     </div>
 
