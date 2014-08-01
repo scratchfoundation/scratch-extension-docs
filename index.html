@@ -51,6 +51,15 @@
 </ol>
 </li>
 <li>
+<a href="#the-extension-descriptor">The Extension Descriptor</a>
+
+<ol>
+<li><a href="#blocks">Blocks</a></li>
+<li><a href="#menus">Menus</a></li>
+<li><a href="#url">URL</a></li>
+</ol>
+</li>
+<li>
 <a href="#hardware-support">Hardware Support</a>
 
 <ol>
@@ -290,6 +299,81 @@
     <span class="nx">ScratchExtensions</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'Alarm extension'</span><span class="p">,</span> <span class="nx">descriptor</span><span class="p">,</span> <span class="nx">ext</span><span class="p">);</span>
 <span class="p">})();</span>
 </pre></div>
+
+<h2>
+<a name="the-extension-descriptor" class="anchor" href="#the-extension-descriptor"><span class="octicon octicon-link"></span></a>The Extension Descriptor</h2>
+
+<p>The extension descriptor can be used for more than just listing the blocks offered by your extension. Here is an example of a more complex descriptor:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">descriptor</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">blocks</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">'w'</span><span class="p">,</span> <span class="s1">'turn motor on for %n secs'</span><span class="p">,</span>             <span class="s1">'motorOnFor'</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'turn motor on'</span><span class="p">,</span>                         <span class="s1">'allMotorsOn'</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'turn motor off'</span><span class="p">,</span>                        <span class="s1">'allMotorsOff'</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'set motor power %n'</span><span class="p">,</span>                    <span class="s1">'startMotorPower'</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'set motor direction %m.motorDirection'</span><span class="p">,</span> <span class="s1">'setMotorDirection'</span><span class="p">,</span> <span class="s1">'this way'</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'h'</span><span class="p">,</span> <span class="s1">'when distance %m.lessMore %n'</span><span class="p">,</span>          <span class="s1">'whenDistance'</span><span class="p">,</span> <span class="s1">'&lt;'</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'h'</span><span class="p">,</span> <span class="s1">'when tilt %m.eNe %n'</span><span class="p">,</span>                   <span class="s1">'whenTilt'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'distance'</span><span class="p">,</span>                              <span class="s1">'getDistance'</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'tilt'</span><span class="p">,</span>                                  <span class="s1">'getTilt'</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="nx">menus</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">motorDirection</span><span class="o">:</span> <span class="p">[</span><span class="s1">'this way'</span><span class="p">,</span> <span class="s1">'that way'</span><span class="p">,</span> <span class="s1">'reverse'</span><span class="p">],</span>
+        <span class="nx">lessMore</span><span class="o">:</span> <span class="p">[</span><span class="s1">'&lt;'</span><span class="p">,</span> <span class="s1">'&gt;'</span><span class="p">],</span>
+        <span class="nx">eNe</span><span class="o">:</span> <span class="p">[</span><span class="s1">'='</span><span class="p">,</span><span class="s1">'not ='</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s1">'http://info.scratch.mit.edu/WeDo'</span>
+<span class="p">};</span>
+</pre></div>
+
+<h3>
+<a name="blocks" class="anchor" href="#blocks"><span class="octicon octicon-link"></span></a>Blocks</h3>
+
+<p>The blocks property is an array of block definitions. Each block definition is an array of three or more items.  The required items are: op code, formatted label, and method name. These may optionally be followed by default block argument values.</p>
+
+<p>The full list of block types available to an extension is as follows. Note that any operation that will run for more than a few milliseconds or will wait for an external event should be run asynchronously, as described above in the <a href="#reporter-blocks-that-wait">Reporter blocks that wait</a> and <a href="#command-blocks-that-wait">Command blocks that wait</a> sections.</p>
+
+<table>
+<thead><tr>
+<th>Op Code</th>
+<th>Meaning</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+<code>' '</code> (space)</td>
+<td>Synchronous command</td>
+</tr>
+<tr>
+<td><code>'w'</code></td>
+<td>Asynchronous command</td>
+</tr>
+<tr>
+<td><code>'r'</code></td>
+<td>Synchronous reporter</td>
+</tr>
+<tr>
+<td><code>'R'</code></td>
+<td>Asynchronous reporter</td>
+</tr>
+<tr>
+<td><code>'h'</code></td>
+<td>Hat block (always synchronous)</td>
+</tr>
+</tbody>
+</table><p>Each block argument is identified by a <code>%</code> character and the character following it specifies the type.  The types are: <code>%n</code> for number, <code>%s</code> for string, and <code>%m</code> for menu.  Menus also identify which menu to use with a period and the name of the menu like this: <code>%m.menuName</code>.</p>
+
+<h3>
+<a name="menus" class="anchor" href="#menus"><span class="octicon octicon-link"></span></a>Menus</h3>
+
+<p>The <code>menus</code> property is an object whose properties define the menus used by block arguments in the extension.  The property name is the menu name as it is used in the block definition(s). The property value is an array of options to display in the menu dropdown interface in Scratch.</p>
+
+<p>For example, the <code>setMotorDirection</code> block in the example above includes <code>%m.motorDirection</code>, which will cause it to display a menu with <code>'this way'</code>, <code>'that way'</code>, and <code>'reverse'</code> as options.</p>
+
+<h3>
+<a name="url" class="anchor" href="#url"><span class="octicon octicon-link"></span></a>URL</h3>
+
+<p>The <code>url</code> property refers to a web page which describes the extension. Ideally, this page would describe each block, give examples, and identify any hardware or software required to use the extension. If the user clicks the <code>'About [extension name]...'</code> menu item within Scratch, this is the URL that will be opened.</p>
 
 <h2>
 <a name="hardware-support" class="anchor" href="#hardware-support"><span class="octicon octicon-link"></span></a>Hardware Support</h2>
