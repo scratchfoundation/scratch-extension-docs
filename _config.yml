@@ -1,0 +1,22 @@
+highlighter: pygments
+markdown: redcarpet
+
+kramdown:
+  input: GFM
+redcarpet:
+  extensions: ["no_intra_emphasis", "tables", "fenced_code_blocks", "autolink", "strikethrough", "lax_spacing", "with_toc_data"]
+
+# Make relative links stay within our project
+# You may want to preview with: bundle exec jekyll serve --baseurl ''
+# See http://jekyllrb.com/docs/github-pages/
+baseurl: /scratch-extension-docs
+
+# The following are fixed by GitHub and cannot be changed by us
+safe: true
+lsi: false
+
+gems:
+- jekyll-mentions
+- jemoji
+- jekyll-redirect-from
+- jekyll-sitemap
