@@ -1,6 +1,6 @@
 See [Using Jekyll with Pages](https://help.github.com/articles/using-jekyll-with-pages) for help with editing this content.
 
-== Quick start
+## Quick start
 
 1. Verify that you have Ruby (version 1.9.3 or 2.0.0)
 1. Run `gem install bundler`
@@ -9,7 +9,7 @@ See [Using Jekyll with Pages](https://help.github.com/articles/using-jekyll-with
 1. Run `bundle exec jekyll serve` to preview your site at
    http://localhost:4000
 
-== Windows users
+## Windows users
 
 Jekyll isn't really designed with Windows in mind, but it's not too hard to
 get it working with Cygwin. Follow the 'Installing Jekyll' steps on the GitHub
@@ -39,7 +39,7 @@ Remember to turn it on again after installation!
 
 If Jekyll fails to build your site, you may need to provide a "fixed" version
 of your `COMSPEC` environment variable. The easiest way to do that is:
-```Bash
+```sh
 export COMSPEC=`cygpath -u "$COMSPEC"`
 ```
 You can either run that command in your shell yourself, add it to `.bashrc`,
