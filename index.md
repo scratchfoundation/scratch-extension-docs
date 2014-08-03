@@ -433,4 +433,4 @@ _A demonstration of the interface and workflow can be viewed [here](https://www.
 
 Scratchers with access to the extension development UI will see new options in the _Extension Library_ window and the extension drop-down menus. In the _Extension Library_ there is a button called _My Extensions_ which will load a list of the user's own extensions. The first item in this list is an option for creating a new extension.
 
-![](https://github.com/LLK/scratch-extension-docs/blob/gh-pages/images/add_ext_win.png)
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/add_ext_win.png)
