@@ -19,15 +19,14 @@ layout: default
    1. [Hardware Support](#hardware-support)
       1. [USB HID Support](#usb-hid-support)
       1. [Serial Device Support](#serial-device-support)
+   1. [Editor Interface](#editor-interface)
 
 # Writing Extensions for Scratch 2.0
 
 Writing a Javascript extension for Scratch 2.0 starts with some boilerplate code, which looks like the following:
 
 ```javascript
-new (function() {
-    var ext = this;
-
+(function(ext) {
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -45,7 +44,7 @@ new (function() {
 
     // Register the extension
     ScratchExtensions.register('Sample extension', descriptor, ext);
-})();
+})({});
 ```
 
 ## Adding Blocks
@@ -57,9 +56,7 @@ An extension may define a number of blocks, of different types (e.g. a command b
 To add a simple _command_ block, there needs to be an entry in the ``descriptors.blocks`` list, and a corresponding function for it. The simplest block possible is shown below (it does nothing).
 
 ```javascript
-new (function() {
-    var ext = this;
-
+(function(ext) {
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -83,7 +80,7 @@ new (function() {
 
     // Register the extension
     ScratchExtensions.register('My first extension', descriptor, ext);
-})();
+})({});
 ```
 
 ### Command blocks that wait
@@ -91,9 +88,7 @@ new (function() {
 Sometimes it is necessary to have a command block that waits (e.g. if a block plays a sound, it may be a good idea to wait till the sound playback finishes). The sample extension below implements a "random wait" block to show how that can be done. Note the use of the ``console.log`` statement in the code - most Javascript methods, as well as [jQuery](http://jquery.com/) methods will work fine in an extension.
 
 ```javascript
-new (function() {
-    var ext = this;
-
+(function(ext) {
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -123,7 +118,7 @@ new (function() {
 
     // Register the extension
     ScratchExtensions.register('Random wait extension', descriptor, ext);
-})();
+})({});
 ```
 
 ### Reporter blocks
@@ -131,9 +126,7 @@ new (function() {
 Blocks can also return values, and they are called _reporter_ blocks. The corresponding JavaScript function for a reporter block needs to return a value, as shown in the example below (note that this example also shows how to make blocks accept parameters).
 
 ```javascript
-new (function() {
-    var ext = this;
-
+(function(ext) {
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -157,7 +150,7 @@ new (function() {
 
     // Register the extension
     ScratchExtensions.register('Sample extension', descriptor, ext);
-})();
+})({});
 ```
 
 ### Reporter blocks that wait
@@ -165,9 +158,7 @@ new (function() {
 One common use-case for reporter blocks is getting data from online web-services, where the blocks need to wait for the web-api call to complete. The following example shows how to fetch the current temperature of a city using an AJAX call to [Open Weather Map API](http://openweathermap.org/API). Note that the block type is _R_ instead of _r_ (which is for a non-blocking reporter).
 
 ```javascript
-new (function() {
-    var ext = this;
-
+(function(ext) {
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
 
@@ -199,7 +190,7 @@ new (function() {
 
     // Register the extension
     ScratchExtensions.register('Weather extension', descriptor, ext);
-})();
+})({});
 ```
 
 ### Hat blocks
@@ -207,8 +198,7 @@ new (function() {
 Hat blocks go on top of block stacks - examples of Scratch hat blocks include "when green flag clicked" or "when this sprite clicked". To create a hat block through an extension, the block type needs to be set to _h_, as shown in the example below.
 
 ```javascript
-new (function() {
-    var ext = this;
+(function(ext) {
     var alarm_went_off = false; // This becomes true after the alarm goes off
 
     // Cleanup function when the extension is unloaded
@@ -247,7 +237,7 @@ new (function() {
 
     // Register the extension
     ScratchExtensions.register('Alarm extension', descriptor, ext);
-})();
+})({});
 ```
 
 ## The Extension Descriptor
@@ -287,7 +277,7 @@ The full list of block types available to an extension is as follows. Note that 
 | `'w'`   | Asynchronous command
 | `'r'`   | Synchronous reporter
 | `'R'`   | Asynchronous reporter
-| `'h'`   | Hat block (always synchronous)
+| `'h'`   | Hat block (synchronous, returns boolean, true = run stack)
 
 Each block argument is identified by a `%` character and the character following it specifies the type.  The types are: `%n` for number, `%s` for string, and `%m` for menu.  Menus also identify which menu to use with a period and the name of the menu like this: `%m.menuName`.
 
@@ -437,3 +427,10 @@ ext._shutdown = function() {
     device = null;
 }
 ```
+
+### Editor Interface
+_A demonstration of the interface and workflow can be viewed [here](https://www.youtube.com/watch?v=PLU7enk1tJ0)._
+
+Scratchers with access to the extension development UI will see new options in the _Extension Library_ window and the extension drop-down menus. In the _Extension Library_ there is a button called _My Extensions_ which will load a list of the user's own extensions. The first item in this list is an option for creating a new extension.
+
+![](https://github.com/LLK/scratch-extension-docs/blob/gh-pages/images/add_ext_win.png)
