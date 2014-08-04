@@ -26,7 +26,7 @@ layout: default
 
 For information about Scratch 2.0 HTTP extensions please see [this page](http://wiki.scratch.mit.edu/wiki/Scratch_Extension_Protocol_(2.0)#HTTP_Extensions). **In this document the word _extension_ will only refer to Scratch 2.0 Javascript extensions.**
 
-Javascript extensions let you create any kind of block you can find in the Scratch language. Need to delay? They can do that too. As you may expect, extensions have access to web browser APIs. We even added an API for extensions to communicate with serial and HID hardware. This API requires a web browser plugin to use online but the offline editor will have it built-in (on Mac and Windows) with the next release.
+Javascript extensions let you create any kind of block you can find in the Scratch language. Need to delay? They can do that too. As you may expect, extensions have access to web browser APIs. We even added an API for extensions to communicate with serial and HID hardware. This API requires a [web browser plugin](http://scratch.mit.edu/scratchr2/static/ext/download.html) to use online but the offline editor will have it built-in (on Mac and Windows) with the next release.
 
 With the updates to Scratch in August 2014, extensions are now uploaded to and loaded from the Scratch servers. However, when creating an extension, your code will be initially loaded from a local file before being uploaded to the server and accessible by projects. With these updates developers now have control over their uploaded extensions in the _Extension Library_. From there developers can create, update, or download their extensions.
 
