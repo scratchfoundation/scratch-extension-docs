@@ -30,7 +30,7 @@ Javascript extensions let you create any kind of block you can find in the Scrat
 
 With the updates to Scratch in August 2014, extensions are now uploaded to and loaded from the Scratch servers. However, when creating an extension, your code will be initially loaded from a local file before being uploaded to the server and accessible by projects. With these updates developers now have control over their uploaded extensions in the _Extension Library_. From there developers can create, update, or download their extensions.
 
-For more information about the editor updates see [Editor Interface](#editor-interface).
+For more information about the editor updates see [Editor Interface](#editor-interface). We've created a [forum](http://scratch.mit.edu/discuss/41/) on Scratch for approved developers to discuss extensions, ask questions, and make suggestions.
 
 # Writing Extensions for Scratch 2.0
 
@@ -446,13 +446,16 @@ Scratchers with access to the extension development UI will see new options in t
 
 ![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/add_ext_win.png)
 
-Before an extension is first uploaded to the Scratch servers, the extension menu looks like this:
+Extensions can be in three states while editing them. Before a new extension is first uploaded to the Scratch servers, the extension menu looks like this:
 
 ![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/new_ext_menu.png)
 
-Extensions saved to the server and/or loaded from the server, have these options:
+When editing an extension, the editor will load and watch (we call it 'connecting' to a file) a local file. This allows the editor to detect changes to the file and display a reload button when changes are available for loading. These are the options for an extension that has been saved to the server and is still connected to a local file:
 
 ![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/saved_ext_menu.png)
 
-When editing an extension, the editor will load and watch (we call it 'connecting' to a file) a local file. This allows the editor to detect changes to the file and display a reload button when changes are available for loading.
+Lastly, here are the options for an extension that has been loaded with a project but is not connected to a local file:
+
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/loaded_ext_menu.png)
+
 
