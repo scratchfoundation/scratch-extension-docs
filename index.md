@@ -6,6 +6,7 @@ layout: default
 # Contents
 
 1. [Introduction](#intro)
+1. [Editor Interface](#editor-interface)
 1. [Writing Extensions for Scratch 2.0](#writing-extensions-for-scratch-20)
    1. [Adding Blocks](#adding-blocks)
       1. [Command blocks](#command-blocks)
@@ -20,17 +21,37 @@ layout: default
    1. [Hardware Support](#hardware-support)
       1. [USB HID Support](#usb-hid-support)
       1. [Serial Device Support](#serial-device-support)
-   1. [Editor Interface](#editor-interface)
 
 # Introduction
 
-For information about Scratch 2.0 HTTP extensions please see [this page](http://wiki.scratch.mit.edu/wiki/Scratch_Extension_Protocol_(2.0)#HTTP_Extensions). **In this document the word _extension_ will only refer to Scratch 2.0 Javascript Extensions.**
+Scratch extensions make it possible to connect Scratch projects with external hardware and information on the web through custom blocks. The sample extension code in [this github repository](https://github.com/LLK/scratch-extension-docs/) shows how to pull weather information from openweathermap.org, get input from a USB joystick, and other examples that demonstrate the range of possibilities.
 
-Javascript extensions let you create any kind of block you can find in the Scratch language. Need to delay? They can do that too. As you may expect, extensions have access to web browser APIs. We even added an API for extensions to communicate with serial and HID hardware. This API requires a [web browser plugin](http://scratch.mit.edu/scratchr2/static/ext/download.html) to use online but the offline editor will have it built-in (on Mac and Windows) with the next release.
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/LEGO_WeDo_Extension.png)
 
-With the updates to Scratch in August 2014, extensions are now uploaded to and loaded from the Scratch servers. However, when creating an extension, your code will be initially loaded from a local file before being uploaded to the server and accessible by projects. With these updates developers now have control over their uploaded extensions in the _Extension Library_. From there developers can create, update, or download their extensions.
+This document explains how members of the Scratch Developer Program can develop and test extensions using their Scratch accounts. Membership in the Scratch Developer Program is currently invite only, but will be open to new members soon. We’re also developing criteria and workflow for making polished and vetted Scratch extensions publicly available to all users on the Scratch website, which we plan to publish in 2015.
 
-For more information about the editor updates see [Editor Interface](#editor-interface). We've created a [forum](http://scratch.mit.edu/discuss/41/) on Scratch for approved developers to discuss extensions, ask questions, and make suggestions.
+The UI, workflow, and protocols for developing extensions should be considered *alpha* - and subject to change as we continue to refine them and act on feedback from the developer community.  Members of the Scratch developer’s program are invited to ask questions and give feedback in the [Extension Developer’s discussion forum](http://scratch.mit.edu/discuss/41/) on the Scratch website. (This forum is currently only visible to members of the developer program.)
+
+( For information about Scratch 2.0 HTTP extensions please see [this page](http://wiki.scratch.mit.edu/wiki/Scratch_Extension_Protocol_(2.0)#HTTP_Extensions). In this document the word extension will only refer to Scratch 2.0 Javascript Extensions. )
+
+### Editor Interface
+_A demonstration of the interface and workflow can be viewed [here](https://www.youtube.com/watch?v=PLU7enk1tJ0)._
+
+Scratchers with access to the extension development UI will see new options in the _Extension Library_ window and the extension drop-down menus. In the _Extension Library_ there is a button called _My Extensions_ which will load a list of the user's own extensions. The first item in this list is an option for creating a new extension.
+
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/add_ext_win.png)
+
+Extensions can be in three states while editing them. Before a new extension is first uploaded to the Scratch servers, the extension menu looks like this:
+
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/new_ext_menu.png)
+
+When editing an extension, the editor will load and watch (we call it 'connecting' to a file) a local file. This allows the editor to detect changes to the file and display a reload button when changes are available for loading. These are the options for an extension that has been saved to the server and is still connected to a local file:
+
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/saved_ext_menu.png)
+
+Lastly, here are the options for an extension that has been loaded with a project but is not connected to a local file:
+
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/loaded_ext_menu.png)
 
 # Writing Extensions for Scratch 2.0
 
@@ -438,24 +459,5 @@ ext._shutdown = function() {
     device = null;
 }
 ```
-
-### Editor Interface
-_A demonstration of the interface and workflow can be viewed [here](https://www.youtube.com/watch?v=PLU7enk1tJ0)._
-
-Scratchers with access to the extension development UI will see new options in the _Extension Library_ window and the extension drop-down menus. In the _Extension Library_ there is a button called _My Extensions_ which will load a list of the user's own extensions. The first item in this list is an option for creating a new extension.
-
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/add_ext_win.png)
-
-Extensions can be in three states while editing them. Before a new extension is first uploaded to the Scratch servers, the extension menu looks like this:
-
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/new_ext_menu.png)
-
-When editing an extension, the editor will load and watch (we call it 'connecting' to a file) a local file. This allows the editor to detect changes to the file and display a reload button when changes are available for loading. These are the options for an extension that has been saved to the server and is still connected to a local file:
-
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/saved_ext_menu.png)
-
-Lastly, here are the options for an extension that has been loaded with a project but is not connected to a local file:
-
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/loaded_ext_menu.png)
 
 
