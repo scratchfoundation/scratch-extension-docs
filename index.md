@@ -21,6 +21,8 @@ layout: default
    1. [Hardware Support](#hardware-support)
       1. [USB HID Support](#usb-hid-support)
       1. [Serial Device Support](#serial-device-support)
+1. [Frequently Asked Questions](#frequently-asked-questions)
+ 
 
 # Introduction
 
@@ -459,5 +461,26 @@ ext._shutdown = function() {
     device = null;
 }
 ```
-
-
+# Frequently Asked Questions
+####What is the Scratch Developer Program?
+The Scratch Developer Program consists of software developers who are interested in new technical initiatives within the Scratch ecosystem. Members of the Scratch Developer Program gain early access to initiatives such as the Scratch Extensions project. Members also have access to the Scratch extension developer forum.
+####How do I join the Scratch Developer Program?
+Membership in the Scratch Developer Program is currently invite only, but will be open to new members next year. This program is for programmers with knowledge of Javascript.
+####What are Scratch Extensions?
+Scratch extensions make it possible for Scratch to interface with external hardware and information outside of the Scratch website through new blocks. Extensions are written in JavaScript for the online Scratch project editor.
+####How do I create a Scratch extension?
+You can learn more about how to create a Scratch extension here: http://llk.github.io/scratch-extension-docs/ 
+####Why can’t I share projects that use unpublished extensions?
+Until we have an approval process in place to ensure that all extensions meet security and quality standards, it won’t be possible to “share” projects that use extensions on the Scratch website. You can download the project using the file menu, and send the .sb2 project file to others who can use the file menu to load it into the Scratch editor and try it out.
+####How can I make my extension available to everyone who uses Scratch?
+We’re working on an approval process for publishing Scratch extensions. We’ll make an announcement on the Scratch Extensions developer forums when we’re ready to accept submissions. Keep in mind we’re likely to choose only one official extension per functionality (hardware, web API). Here are some of the criteria we’ll be using to decide whether or not to accept an extension: 
+  * Security
+  * Ease of Use
+  * Quality (documentation, design, code)
+  * Requirements (browsers, operating system, hardware, etc)
+  * Content (age-appropriate, copyright infringement) 
+   
+####I’m having trouble creating my extension - where can I get help?
+Publish your code someplace publicly viewable, like Github, and then post a link to it in the [Scratch extension developers forum](http://scratch.mit.edu/discuss/41/) asking other developers for help.
+####How do I request new features or submit bugs?  
+We would love to hear your thoughts and suggestions. Submit them as issues against this repository.
