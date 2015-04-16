@@ -27,15 +27,38 @@ Required Cygwin packages:
 * make
 * patch
 * pkg-config
+* zlib-devel
+
+Note that `bundle install` will likely take quite a while, and may appear to hang.
 
 Even with all the required packages, Jekyll on Windows doesn't seem to like
 running in `--watch` mode. This might be fixed by downgrading the `listen`
 package, but doing so means downgrading many other packages and potentially
 breaking compatibility.
 
+### Troubleshooting
+
+#### Nokogiri fails to build
+
+This appears to be a bug related to Cygwin and certain versions of Nokogiri. As a workaround, you'll need to install a few more Cygwin packages:
+* libxml2-devel
+* libxslt-devel
+* ruby-nokogiri
+
+Then, run this command:
+```sh
+bundle config build.nokogiri --use-system-libraries
+```
+
+After this, `bundle install` will use the version of Nokogiri installed by Cygwin rather than trying to download and build a new one.
+
+#### Permission denied
+
 If you get "permission denied" related to `conftest.exe` while running
 `bundle install`, you may need to temporarily disable your virus protection.
 Remember to turn it on again after installation!
+
+#### Jekyll fails to build your site
 
 If Jekyll fails to build your site, you may need to provide a "fixed" version
 of your `COMSPEC` environment variable. The easiest way to do that is:
