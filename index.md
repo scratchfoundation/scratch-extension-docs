@@ -60,7 +60,7 @@ This launches a dialogue that prompts you to link to your Github page. You’ll 
 
 You can load an SBX (.sbx) file that contains a pointer to your extension from the homepage directly through this element:
 
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/scratchx/images/link_to_files.png)
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/scratchx/images/open_ext_files.png)
 
 The same dialogue can be launched from within Scratch by clicking on the green ‘Load Experimental Extension’ in the top right or from within the ‘More Blocks’ section of the blocks menu:
 
