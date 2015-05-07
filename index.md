@@ -26,7 +26,7 @@ layout: default
 
 # Introduction
 
-Scratch extensions make it possible to connect Scratch projects with external hardware and information on the web through custom blocks. The sample extension code in [this github repository](https://github.com/LLK/scratch-extension-docs/) shows how to pull weather information from openweathermap.org, get input from a USB joystick, and other examples that demonstrate the range of possibilities.
+Scratch extensions make it possible to connect Scratch projects with external hardware and information on the web through custom blocks. The sample extension code in [this github repository](https://github.com/LLK/scratch-extension-docs/) shows how to pull weather information from openweathermap.org, get input from a USB joystick, and other examples that demonstrate the range of possibilities. There are a lot. 
 
 ![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/LEGO_WeDo_Extension.png)
 
