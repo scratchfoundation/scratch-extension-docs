@@ -5,9 +5,12 @@ layout: default
 ---
 # Contents
 
-1. [Introduction](#intro)
-1. [Editor Interface](#editor-interface)
-1. [Writing Extensions for Scratch 2.0](#writing-extensions-for-scratch-20)
+1. [Introduction](#introduction)
+1. [Using ScratchX](#using-scratchx)
+   1. [Link to JavaScript file](#link-to-a-js-file-on-github)
+   1. [Open an SBX file](#open-an-sbx-file)
+   1. [Open a ScratchX link](#open-a-scratchx-link)
+1. [Writing Extensions for ScratchX](#writing-extensions-for-scratchx)
    1. [Adding Blocks](#adding-blocks)
       1. [Command blocks](#command-blocks)
       1. [Command blocks that wait](#command-blocks-that-wait)
@@ -21,41 +24,59 @@ layout: default
    1. [Hardware Support](#hardware-support)
       1. [USB HID Support](#usb-hid-support)
       1. [Serial Device Support](#serial-device-support)
-1. [Frequently Asked Questions](#frequently-asked-questions)
+1. [Sharing Extensions](#sharing-extensions)
+1. [Developer FAQ](#developer-faq)
  
 
 # Introduction
 
-Scratch extensions make it possible to connect Scratch projects with external hardware and information on the web through custom blocks. The sample extension code in [this github repository](https://github.com/LLK/scratch-extension-docs/) shows how to pull weather information from openweathermap.org, get input from a USB joystick, and other examples that demonstrate the range of possibilities. There are a lot. 
+ScratchX is a platform that enables people to test experimental functionality built by developers for the visual programming language [Scratch](https://scratch.mit.edu). This experimental functionality, which we call Experimental Extensions, makes it possible for Scratch to interface with external hardware and information outside of the Scratch website through new blocks. Some Experimental Extensions enable Scratch to connect with physical hardware, such as robots or programmable devices. Other Experimental Extensions connect web-based data and services to Scratch, such as weather data or text-to-speech services. Extensions are written in JavaScript for the online ScratchX project editor.
 
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/LEGO_WeDo_Extension.png)
-
-This document explains how members of the Scratch Developer Program can develop and test extensions using their Scratch accounts. Membership in the Scratch Developer Program is currently invite only, but will be open to new members soon. We’re also developing criteria and workflow for making polished and vetted Scratch extensions publicly available to all users on the Scratch website, which we plan to publish in 2015.
-
-The UI, workflow, and protocols for developing extensions should be considered *alpha* - and subject to change as we continue to refine them and act on feedback from the developer community.  Members of the Scratch developer’s program are invited to ask questions and give feedback in the [Extension Developer’s discussion forum](http://scratch.mit.edu/discuss/41/) on the Scratch website. (This forum is currently only visible to members of the developer program.)
+This documentation serves as a guide for developers who want to create Experimental Extensions for Scratch and run them on the ScratchX platform. If you are not a developer and have have questions about using ScratchX or Experimental Extensions, please read our [FAQ for non-developers](scratchx.org/faq) *missing. If you are looking for Official Extensions within Scratch, such as the LEGO WeDo, you can learn more about Scratch 2.0 extensions on the [Scratch Wiki](http://wiki.scratch.mit.edu/wiki/Scratch_Extension). 
 
 ( For information about Scratch 2.0 HTTP extensions please see [this page](http://wiki.scratch.mit.edu/wiki/Scratch_Extension_Protocol_(2.0)#HTTP_Extensions). In this document the word extension will only refer to Scratch 2.0 Javascript Extensions. )
 
-### Editor Interface
-_A demonstration of the interface and workflow can be viewed [here](https://www.youtube.com/watch?v=PLU7enk1tJ0)._
+# Using ScratchX
 
-Scratchers with access to the extension development UI will see new options in the _Extension Library_ window and the extension drop-down menus. In the _Extension Library_ there is a button called _My Extensions_ which will load a list of the user's own extensions. The first item in this list is an option for creating a new extension.
+The ScratchX interface is very similar to the Scratch 2.0 interface with the exception of a set of features for loading Experimental Extensions. You can load your extension into ScratchX in the following ways:
 
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/add_ext_win.png)
+## Link to a .JS file on Github
 
-Extensions can be in three states while editing them. Before a new extension is first uploaded to the Scratch servers, the extension menu looks like this:
+ScratchX does not host JavaScript extensions. Instead, we provide a way to link ScratchX to a publicly-hosted JS file. 
 
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/new_ext_menu.png)
+In order to link a .JS file, you must first put your file on to Github, a web-based Git repository hosting service. This requires you set up a [Github](http://github.com) account if you don’t already have, and push your JS file to a [Github page](https://pages.github.com/).
 
-When editing an extension, the editor will load and watch (we call it 'connecting' to a file) a local file. This allows the editor to detect changes to the file and display a reload button when changes are available for loading. These are the options for an extension that has been saved to the server and is still connected to a local file:
+_Need information about crossdomain.xml here, and encourage people to think about backwards compatibility_
 
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/saved_ext_menu.png)
+Next, to link ScratchX to your hosted file, right-click or shift-click on the ‘Load Experimental Extension’ from within the ‘More Blocks’ category in the blocks menu:
 
-Lastly, here are the options for an extension that has been loaded with a project but is not connected to a local file:
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/scratchx/images/link_to_js_menu.png)
 
-![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/gh-pages/images/loaded_ext_menu.png)
+This launches a dialogue that prompts you to link to your Github page. You’ll need to copy the link to your publicly-hosted JS file on Github and then paste it into the box on the dialogue:
 
-# Writing Extensions for Scratch 2.0
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/scratchx/images/link_to_github.png)
+
+## Open an SBX File
+
+You can load an SBX (.sbx) file that contains a pointer to your extension from the homepage directly through this element:
+
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/scratchx/images/link_to_file.png)
+
+The same dialogue can be launched from within Scratch by clicking on the green ‘Load Experimental Extension’ in the top right or from within the ‘More Blocks’ section of the blocks menu:
+
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/scratchx/images/load_ext_buttons.png)
+
+For help on creating SBX files / projects with pointers to Github-hosted JS files, see our [documentation on sharing here](#sharing-extensions).
+
+## Open a ScratchX link
+
+Developers who have hosted their extensions (.js file) or sample projects (.sbx file) on Github can create a ScratchX url that points directly to their extension. This link can then be shared with the public.  Learn how to generate the ScratchX link later on in [this documentation](#sharing-extensions). 
+
+Users can then visit that URL directly in their browsers or enter it into the homepage element on ScratchX.org:
+
+![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/scratchx/images/open-ext-url.png)
+
+# Writing Extensions for ScratchX
 
 Writing a Javascript extension for Scratch 2.0 starts with some boilerplate code, which looks like the following:
 
@@ -461,26 +482,68 @@ ext._shutdown = function() {
     device = null;
 }
 ```
-# Frequently Asked Questions
-####What is the Scratch Developer Program?
-The Scratch Developer Program consists of software developers who are interested in new technical initiatives within the Scratch ecosystem. Members of the Scratch Developer Program gain early access to initiatives such as the Scratch Extensions project. Members also have access to the Scratch extension developer forum.
-####How do I join the Scratch Developer Program?
-Membership in the Scratch Developer Program is currently invite only, but will be open to new members next year. This program is for programmers with knowledge of Javascript.
-####What are Scratch Extensions?
-Scratch extensions make it possible for Scratch to interface with external hardware and information outside of the Scratch website through new blocks. Extensions are written in JavaScript for the online Scratch project editor.
-####How do I create a Scratch extension?
-You can learn more about how to create a Scratch extension here: http://llk.github.io/scratch-extension-docs/ 
-####Why can’t I share projects that use unpublished extensions?
-Until we have an approval process in place to ensure that all extensions meet security and quality standards, it won’t be possible to “share” projects that use extensions on the Scratch website. You can download the project using the file menu, and send the .sb2 project file to others who can use the file menu to load it into the Scratch editor and try it out.
-####How can I make my extension available to everyone who uses Scratch?
-We’re working on an approval process for publishing Scratch extensions. We’ll make an announcement on the Scratch Extensions developer forums when we’re ready to accept submissions. Keep in mind we’re likely to choose only one official extension per functionality (hardware, web API). Here are some of the criteria we’ll be using to decide whether or not to accept an extension: 
-  * Security
-  * Ease of Use
-  * Quality (documentation, design, code)
-  * Requirements (browsers, operating system, hardware, etc)
-  * Content (age-appropriate, copyright infringement) 
-   
-####I’m having trouble creating my extension - where can I get help?
-Publish your code someplace publicly viewable, like Github, and then post a link to it in the [Scratch extension developers forum](http://scratch.mit.edu/discuss/41/) asking other developers for help.
-####How do I request new features or submit bugs?  
-We would love to hear your thoughts and suggestions. Submit them as issues against this repository.
+
+# Sharing Extensions
+
+ScratchX does not host JavaScript extensions. Instead, we provide a way to link ScratchX to a Github-hosted JavaScript extension. ScratchX can also point to a Github-hosted project file (.sbx) that in turn points to a Github-hosted JavaScript (.js) file. This is particularly useful if you’d like to share a demo project that makes use of an experimental extension.
+
+The first step is to set up a [Github account](https://github.com/) if you don’t already have one, and push your JS file and/or SBX file to a [Github page](https://pages.github.com/).
+
+Next, paste the public URL of your JavaScript (.js) and/or project (.sbx) file into the URL generator below:
+
+_Need to create this for the public!_
+
+
+Clicking on this URL will open a Scratch editor with your extension and/or project data loaded from Github. You can now share that link with the world!
+
+
+# Developer FAQ
+
+##What is ScratchX? 
+ScratchX is a platform that enables people to test experimental functionality built by developers for the visual programming language [Scratch](#https://scratch.mit.edu). 
+
+##What’s the difference between Scratch and ScratchX? 
+[Scratch](#https://scratch.mit.edu) is a programming language and online community where you can create your own interactive stories, games, and animations. ScratchX is a separate experimental platform built to test experimental Scratch features, also known as Experimental Extensions. There is no login or community component to ScratchX, and projects created within ScratchX can only be run on ScratchX. 
+
+##What are Scratch Extensions?
+Scratch extensions make it possible for Scratch to interface with external hardware and information outside of the Scratch website through new blocks. Extensions are written in JavaScript for the ScratchX project editor.
+
+##What is the difference between Experimental and Official Extensions?
+Experimental Extensions are extensions created for Scratch by the community; they are not managed or endorsed by Scratch in any way. Experimental Extensions can run only in the ScratchX environment. Official Extensions can be found and run from within Scratch 2.0 (both [online](#https://scratch.mit.edu) and [offline](#https://scratch.mit.edu/scratch2download/_) editors), accessible in the ‘More Blocks’ section of the blocks menu. 
+
+##How can I make my extension Official? 
+At this time, we’re focused on building a library of Experimental Extensions on the ScratchX platform. We plan to work with developers over time to bring many of these Experimental Extensions into Scratch as official extensions. If you’d like to suggest your extension be highlighted on ScratchX, please email us at: scratch-extensions@media.mit.edu
+
+##What are the criteria for being added to the ScratchX library?
+Here are some of the criteria we’ll be using to decide whether or not to add an extension to the library:
+
+* Security
+* Ease of Use
+* Quality (documentation, design, code)
+* Requirements (browsers, operating system, hardware, etc)
+* Content (age-appropriate, copyright infringement)
+
+##Where can I find example Experimental Extensions to play around with?
+We have linked to a few example extensions on the [ScratchX](#http://scratchx.org) homepage. We plan to highlight additional extensions in the coming months in a ScratchX library.
+
+##Who can make an extension?
+Developers with a [GitHub](#https://github.com) account and a knowledge of JavaScript can create and test Experimental Extensions on ScratchX. To learn more about how to make extensions, see our [documentation here](#writing-extensions-for-scratchx)
+
+##How do I create a Scratch extension?
+You can learn more about how to create a Scratch extension [in our documentation here](#sharing-extensions)
+
+##How do I share my Experimental Extensions?
+The easiest way to share your experimental extension is to create a scratchx.org url that points to your extension (hosted on GitHub). You can learn more about [sharing your extension here](#sharing-extensions). 
+
+##Why can’t I open .sbx files in Scratch 2.0 or the offline editor?
+Experimental Extensions are extensions created for Scratch by the community and are not managed or endorsed by Scratch in any way. Because of this, we do not allow Experimental Extensions to run on the larger Scratch site. 
+
+##I’m having trouble creating my extension - where can I get help?
+Once you’ve published your code on Github, post a link to it in the [Scratch extension developers forum](#http://scratch.mit.edu/discuss/41/) asking other developers for help.
+
+##What is going to happen to the older Experimental Extension tools in Scratch 2.0? 
+We plan to phase out the older Experimental Extensions platform on Scratch 2.0 at the end of November 2015. We encourage everyone to migrate their extensions out of Scratch 2.0 and into GitHub for use in ScratchX before November 2015. 
+
+##How do I request new features or submit bugs?
+We would love to hear your thoughts and suggestions. Submit them as issues here on our [GitHub repository](#https://github.com/LLK/scratchx/issues).
+
