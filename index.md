@@ -7,7 +7,7 @@ layout: default
 
 1. [Introduction](#introduction)
 1. [Using ScratchX](#using-scratchx)
-   1. [Link to JavaScript file](#link-to-a-js-file-on-github)
+   1. [Load a JavaScript extension file](#load-a-javascript-file-hosted-on-github)
    1. [Open an SBX file](#open-an-sbx-file)
    1. [Open a ScratchX link](#open-a-scratchx-link)
 1. [Writing Extensions for ScratchX](#writing-extensions-for-scratchx)
@@ -40,19 +40,26 @@ This documentation serves as a guide for developers who want to create Experimen
 
 The ScratchX interface is very similar to the Scratch 2.0 interface with the exception of a set of features for loading Experimental Extensions. You can load your extension into ScratchX in the following ways:
 
-## Link to a .JS file on Github
+## Load a JavaScript file hosted on Github
 
-ScratchX does not host JavaScript extensions. Instead, we provide a way to link ScratchX to a publicly-hosted JS file. 
+ScratchX does not host JavaScript extensions directly. Instead, we provide a way to load a publicly-accessible JavaScript extensions within the ScratchX editor. Currently hosts for JavaScript extensions are restricted to the `github.io` domain. 
 
-In order to link a .JS file, you must first put your file on to Github, a web-based Git repository hosting service. This requires you set up a [Github](http://github.com) account if you don’t already have, and push your JS file to a [Github page](https://pages.github.com/).
+To create a publicly accessible JavaScript extension, you need to
+* Create a public repository on [Github](https://github.com)
+* Create a `gh-pages` branch in that repository
+* Clone the branch locally and then `git add` and `git commit` the JavaScript files to the `gh-pages` branch.
+* Push the updated branch to Github
 
+This will utilize the [Pages](https://pages.github.com/) service of GitHub to make the JavaScript files available over &lt;your_github_username&gt;.github.io/&lt;repository_name&gt;. Details on how to use Github Pages is available [here](https://pages.github.com/).
+
+You will also need to add a crossdomain.xml file
 _Need information about crossdomain.xml here, and encourage people to think about backwards compatibility_
 
-Next, to link ScratchX to your hosted file, right-click or shift-click on the ‘Load Experimental Extension’ from within the ‘More Blocks’ category in the blocks menu:
+Next, to link ScratchX to your hosted file, click on the ‘Load Experimental Extension’ from within the ‘More Blocks’ category in the blocks menu:
 
 ![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/scratchx/images/link_to_js_menu.png)
 
-This launches a dialogue that prompts you to link to your Github page. You’ll need to copy the link to your publicly-hosted JS file on Github and then paste it into the box on the dialogue:
+This launches a dialogue that prompts you to link to the JavaScript file hosted on Github.io. You’ll need to copy the link to your publicly-hosted JS file on Github and then paste it into the box on the dialogue:
 
 ![](https://raw.githubusercontent.com/LLK/scratch-extension-docs/scratchx/images/link_to_github.png)
 
