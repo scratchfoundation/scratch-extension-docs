@@ -500,16 +500,16 @@ Clicking on this URL will open a Scratch editor with your extension and/or proje
 # Developer FAQ
 
 ##What is ScratchX? 
-ScratchX is a platform that enables people to test experimental functionality built by developers for the visual programming language [Scratch](#https://scratch.mit.edu). 
+ScratchX is a platform that enables people to test experimental functionality built by developers for the visual programming language [Scratch](https://scratch.mit.edu). 
 
 ##What’s the difference between Scratch and ScratchX? 
-[Scratch](#https://scratch.mit.edu) is a programming language and online community where you can create your own interactive stories, games, and animations. ScratchX is a separate experimental platform built to test experimental Scratch features, also known as Experimental Extensions. There is no login or community component to ScratchX, and projects created within ScratchX can only be run on ScratchX. 
+[Scratch](https://scratch.mit.edu) is a programming language and online community where you can create your own interactive stories, games, and animations. ScratchX is a separate experimental platform built to test experimental Scratch features, also known as Experimental Extensions. There is no login or community component to ScratchX, and projects created within ScratchX can only be run on ScratchX. 
 
 ##What are Scratch Extensions?
 Scratch extensions make it possible for Scratch to interface with external hardware and information outside of the Scratch website through new blocks. Extensions are written in JavaScript for the ScratchX project editor.
 
 ##What is the difference between Experimental and Official Extensions?
-Experimental Extensions are extensions created for Scratch by the community; they are not managed or endorsed by Scratch in any way. Experimental Extensions can run only in the ScratchX environment. Official Extensions can be found and run from within Scratch 2.0 (both [online](#https://scratch.mit.edu) and [offline](#https://scratch.mit.edu/scratch2download/_) editors), accessible in the ‘More Blocks’ section of the blocks menu. 
+Experimental Extensions are extensions created for Scratch by the community; they are not managed or endorsed by Scratch in any way. Experimental Extensions can run only in the ScratchX environment. Official Extensions can be found and run from within Scratch 2.0 (both [online](https://scratch.mit.edu) and [offline](https://scratch.mit.edu/scratch2download/_) editors), accessible in the ‘More Blocks’ section of the blocks menu. 
 
 ##How can I make my extension Official? 
 At this time, we’re focused on building a library of Experimental Extensions on the ScratchX platform. We plan to work with developers over time to bring many of these Experimental Extensions into Scratch as official extensions. If you’d like to suggest your extension be highlighted on ScratchX, please email us at: scratch-extensions@media.mit.edu
@@ -524,10 +524,10 @@ Here are some of the criteria we’ll be using to decide whether or not to add a
 * Content (age-appropriate, copyright infringement)
 
 ##Where can I find example Experimental Extensions to play around with?
-We have linked to a few example extensions on the [ScratchX](#http://scratchx.org) homepage. We plan to highlight additional extensions in the coming months in a ScratchX library.
+We have linked to a few example extensions on the [ScratchX](http://scratchx.org) homepage. We plan to highlight additional extensions in the coming months in a ScratchX library.
 
 ##Who can make an extension?
-Developers with a [GitHub](#https://github.com) account and a knowledge of JavaScript can create and test Experimental Extensions on ScratchX. To learn more about how to make extensions, see our [documentation here](#writing-extensions-for-scratchx)
+Developers with a [GitHub](https://github.com) account and a knowledge of JavaScript can create and test Experimental Extensions on ScratchX. To learn more about how to make extensions, see our [documentation here](#writing-extensions-for-scratchx)
 
 ##How do I create a Scratch extension?
 You can learn more about how to create a Scratch extension [in our documentation here](#sharing-extensions)
@@ -536,17 +536,17 @@ You can learn more about how to create a Scratch extension [in our documentation
 The easiest way to share your experimental extension is to create a scratchx.org url that points to your extension (hosted on GitHub). You can learn more about [sharing your extension here](#sharing-extensions). 
 
 ##What is an .sbx file? 
-The SBX (.sbx) ScratchX file format is the file format used to encode ScratchX projects when they are downloaded to a user's computer. SBX files can only be used on the ScratchX site. Other Scratch environments use different formats, including the .sb2 format for Scratch 2.0 (read more [here](#http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_%282.0%29)) and .sb format for Scratch 1.4 (read more [here](http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_%281.4%29))
+The SBX (.sbx) ScratchX file format is the file format used to encode ScratchX projects when they are downloaded to a user's computer. SBX files can only be used on the ScratchX site. Other Scratch environments use different formats, including the .sb2 format for Scratch 2.0 (read more [here](http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_%282.0%29)) and .sb format for Scratch 1.4 (read more [here](http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_%281.4%29))
 
 ##Why can’t I open .sbx files in Scratch 2.0 or the offline editor?
 Experimental Extensions are extensions created for Scratch by the community and are not managed or endorsed by Scratch in any way. Because of this, we do not allow Experimental Extensions to run on the larger Scratch site. 
 
 ##I’m having trouble creating my extension - where can I get help?
-Once you’ve published your code on Github, post a link to it in the [Scratch extension developers forum](#http://scratch.mit.edu/discuss/41/) asking other developers for help.
+Once you’ve published your code on Github, post a link to it in the [Scratch extension developers forum](http://scratch.mit.edu/discuss/41/) asking other developers for help.
 
 ##What is going to happen to the older Experimental Extension tools in Scratch 2.0? 
 We plan to phase out the older Experimental Extensions platform on Scratch 2.0 at the end of November 2015. We encourage everyone to migrate their extensions out of Scratch 2.0 and into GitHub for use in ScratchX before November 2015. 
 
 ##How do I request new features or submit bugs?
-We would love to hear your thoughts and suggestions. Submit them as issues here on our [GitHub repository](#https://github.com/LLK/scratchx/issues).
+We would love to hear your thoughts and suggestions. Submit them as issues here on our [GitHub repository](https://github.com/LLK/scratchx/issues).
 
