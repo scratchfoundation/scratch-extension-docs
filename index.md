@@ -535,6 +535,9 @@ You can learn more about how to create a Scratch extension [in our documentation
 ##How do I share my Experimental Extensions?
 The easiest way to share your experimental extension is to create a scratchx.org url that points to your extension (hosted on GitHub). You can learn more about [sharing your extension here](#sharing-extensions). 
 
+##What is an .sbx file? 
+The SBX (.sbx) ScratchX file format is the file format used to encode ScratchX projects when they are downloaded to a user's computer. SBX files can only be used on the ScratchX site. Other Scratch environments use different formats, including the .sb2 format for Scratch 2.0 (read more [here](#http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_%282.0%29)) and .sb format for Scratch 1.4 (read more [here](http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_%281.4%29))
+
 ##Why can’t I open .sbx files in Scratch 2.0 or the offline editor?
 Experimental Extensions are extensions created for Scratch by the community and are not managed or endorsed by Scratch in any way. Because of this, we do not allow Experimental Extensions to run on the larger Scratch site. 
 
