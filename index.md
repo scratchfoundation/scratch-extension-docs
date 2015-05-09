@@ -50,10 +50,11 @@ To create a publicly accessible JavaScript extension, you need to
 * Clone the branch locally and then `git add` and `git commit` the JavaScript files to the `gh-pages` branch.
 * Push the updated branch to Github
 
-This will utilize the [Pages](https://pages.github.com/) service of GitHub to make the JavaScript files available over &lt;your_github_username&gt;.github.io/&lt;repository_name&gt;. Details on how to use Github Pages is available [here](https://pages.github.com/).
+This will utilize the [Pages](https://pages.github.com/) service of GitHub to make the JavaScript files available over &lt;your_github_username&gt;.github.io/&lt;repository_name&gt;. Details on how to use Github Pages are available [here](https://pages.github.com/).
 
-You will also need to add a crossdomain.xml file
-_Need information about crossdomain.xml here, and encourage people to think about backwards compatibility_
+You will also need to [set up a crossdomain.xml file](#user-content-setting-up-crossdomainxml).
+
+_Need to encourage people to think about backwards compatibility_
 
 Next, to link ScratchX to your hosted file, click on the ‘Load Experimental Extension’ from within the ‘More Blocks’ category in the blocks menu:
 
@@ -494,7 +495,7 @@ ext._shutdown = function() {
 
 ScratchX does not host JavaScript extensions. Instead, we provide a way to link ScratchX to a Github-hosted JavaScript extension. ScratchX can also point to a Github-hosted project file (.sbx) that in turn points to a Github-hosted JavaScript (.js) file. This is particularly useful if you’d like to share a demo project that makes use of an experimental extension.
 
-The first step is to set up a [Github account](https://github.com/) if you don’t already have one, and push your JS file and/or SBX file to a [Github page](https://pages.github.com/).
+The first step is to set up a [Github account](https://github.com/) if you don’t already have one, and push your JS file and/or SBX file to a [Github page](https://pages.github.com/). You will also need to [set up a crossdomain.xml file](#user-content-setting-up-crossdomainxml).
 
 Next, paste the public URL of your JavaScript (.js) and/or project (.sbx) file into the URL generator below:
 
@@ -502,6 +503,27 @@ _Need to create this for the public!_
 
 
 Clicking on this URL will open a Scratch editor with your extension and/or project data loaded from Github. You can now share that link with the world!
+
+## Setting up crossdomain.xml
+
+In order for ScratchX to load your extensions and sample projects from GitHub Pages, you will need to put a file called `crossdomain.xml` into your user or organization repository. This security file lets Flash know that it is allowed to load resources from your site. It will grant Flash access to files on your public repositories, but will not grant access to any private repositories. For more information about crossdomain.xml, please see [this article on Adobe Developer Connection](http://www.adobe.com/devnet/adobe-media-server/articles/cross-domain-xml-for-streaming.html).
+
+Please note that the `crossdomain.xml` file must be in the root of the host. That is, if your extension file is at `http://user.github.io/repository/extension.js` then Flash will look for `http://user.github.io/crossdomain.xml`. This means that the `crossdomain.xml` file cannot be a part of a project repository.
+
+Follow these steps to set up a basic `crossdomain.xml` that will grant access only to ScratchX:
+
+1. Follow the instructions on the [GitHub Pages site](https://pages.github.com/) to **create a user or organization repository** and then **clone the repository**.
+2. Instead of (or in addition to) creating an `index.html` file, create a file called `crossdomain.xml` -- see example below.
+3. Commit the `crossdomain.xml` file and push or sync it to GitHub as shown in the GitHub Pages instructions.
+
+Here is an example `crossdomain.xml` suitable for use with ScratchX:
+```XML
+<cross-domain-policy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.adobe.com/xml/schemas/PolicyFile.xsd">
+  <site-control permitted-cross-domain-policies="master-only"/>
+  <allow-access-from domain="scratchx.org"/>
+  <allow-access-from domain="llk.github.io"/>
+</cross-domain-policy>
+```
 
 
 # Developer FAQ
