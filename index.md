@@ -497,12 +497,17 @@ ScratchX does not host JavaScript extensions. Instead, we provide a way to link 
 
 The first step is to set up a [Github account](https://github.com/) if you don’t already have one, and push your JS file and/or SBX file to a [Github page](https://pages.github.com/). You will also need to [set up a crossdomain.xml file](#user-content-setting-up-crossdomainxml).
 
-Next, paste the public URL of your JavaScript (.js) and/or project (.sbx) file into the URL generator below:
+ScratchX can automatically load an extension or project specified on its URL. To do this, simply add `?url=http://...` to the end of the ScratchX URL. For example, if your extension is at `http://user.github.io/repository/extension.js` then your ScratchX URL would be:
 
-_Need to create this for the public!_
+`http://scratchx.org/?url=http://user.github.io/repository/extension.js`
 
+Just as saving a project from Scratch keeps track of the extensions used by the project, saving a project .sbx file from ScratchX keeps track of the GitHub URLs of the experimental extensions in use. As an extension author, this means that you can save an example project and share that .sbx file to give others an idea of what can be done with your extension.
 
-Clicking on this URL will open a Scratch editor with your extension and/or project data loaded from Github. You can now share that link with the world!
+You can construct a URL for a project .sbx file the same way as for an extension. For example, if your project is at `http://user.github.io/repository/example.sbx` then your ScratchX URL would be:
+
+`http://scratchx.org/?url=http://user.github.io/repository/example.sbx`
+
+Clicking on these URLs will open a ScratchX editor with your extension and/or project data loaded from Github. You can now share that link with the world!
 
 ## Setting up crossdomain.xml
 
