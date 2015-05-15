@@ -576,7 +576,7 @@ The SBX (.sbx) ScratchX file format is the file format used to encode ScratchX p
 Experimental Extensions are extensions created for Scratch by the community and are not managed or endorsed by Scratch in any way. Because of this, we do not allow Experimental Extensions to run on the larger Scratch site. 
 
 ##I’m having trouble creating my extension - where can I get help?
-Once you’ve published your code on Github, post a link to it in the [Scratch extension developers forum](http://scratch.mit.edu/discuss/41/) asking other developers for help.
+Once you’ve published your code on Github, post a link to it in the [Scratch extension developers forum](http://scratch.mit.edu/discuss/48/) asking other developers for help.
 
 ##What is going to happen to the older Experimental Extension tools in Scratch 2.0? 
 We plan to phase out the older Experimental Extensions platform on Scratch 2.0 at the end of November 2015. We encourage everyone to migrate their extensions out of Scratch 2.0 and into GitHub for use in ScratchX before November 2015. 
