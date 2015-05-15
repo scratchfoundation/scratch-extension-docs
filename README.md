@@ -1,9 +1,4 @@
-scratch-extension-docs
-======================
+This repository has moved
+=========================
 
-Sample code for creating extensions with Scratch 2.0.
-
-See http://llk.github.io/scratch-extension-docs for documentation.
-
-Questions? See the Scratch extension developer's forum:
-http://scratch.mit.edu/discuss/48/
+Please find [documentation](https://github.com/LLK/scratchx/wiki), [example extensions](https://github.com/LLK/scratchx/wiki/Example-Extensions) and more at the [ScratchX repository](https://github.com/LLK/scratchx/).
